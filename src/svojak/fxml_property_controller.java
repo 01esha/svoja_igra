@@ -5,8 +5,12 @@
  */
 package svojak;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 /**
  *
@@ -14,22 +18,35 @@ import javafx.stage.Stage;
  */
 public class fxml_property_controller {
     @FXML 
-    private Label lblThPr1; 
+    private TextField tfTheme1; 
+    @FXML 
+    private TextField tfTheme2;
+    @FXML 
+    private TextField tfTheme3;
+    @FXML 
+    private TextField tfTheme4;
+    @FXML 
+    private TextField tfTheme5;
+    @FXML 
+    private Button btnOK;
     
-    private Stage dialogStage;
     
     @FXML
     private void initialize() {
 
     }   
+    
     @FXML
-    private void handleOk() {
-        dialogStage.close();
+    protected void handleOk() {
+        //dialogStage.close();
+    ClassProperty.getInstance().ThemeNameSet(tfTheme1.getText());
+    Stage stage = (Stage) btnOK.getScene().getWindow();    
+    stage.close();
     }
     
     @FXML
     private void handleCancel() {
-        dialogStage.close();
+       
     }
     
     

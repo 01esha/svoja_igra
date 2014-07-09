@@ -10,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -54,11 +57,13 @@ public class FXMLDocumentController implements Initializable {
     
     private short tournum = 1;
     
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    addgridlbl();
-    
+        addgridlbl();
     }    
+    
     private void addgridlbl(){
      for ( int i = 0; i < 5; i++) {
             for ( int j = 0; j < 5; j++) {
@@ -87,6 +92,7 @@ public class FXMLDocumentController implements Initializable {
                 }});
             }
         } 
+    
     }
     
     private void propertyform(){
@@ -160,14 +166,17 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(root);
             Stage secondStage = new Stage(StageStyle.UTILITY);
             secondStage.setTitle("Своя Игра");
-            secondStage.setScene(scene);
-            
-            
-            secondStage.show();
-            
+            secondStage.setScene(scene);            
+            //secondStage.show();
+            secondStage.showAndWait();
+            lblTheme1.setText(ClassProperty.getInstance().ThemeNameGet()); 
             } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }            
     }
+
+    
+  
     
 }
+

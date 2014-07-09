@@ -18,10 +18,11 @@ import javafx.stage.Stage;
  */
 public class Svojak extends Application {
     
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));        
         Scene scene = new Scene(root);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("svoay_igra.png")));
         stage.setTitle("Своя Игра");    

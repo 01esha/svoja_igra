@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" />
+            <TextField GridPane.columnIndex="1" fx:id="tfTheme1"/>
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -71,7 +71,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button onAction="#handleOk" text="Сохранить настройки" GridPane.halignment="CENTER" />
+                  <Button fx:id="btnOK" onAction="#handleOk" text="Сохранить настройки" GridPane.halignment="CENTER" />
                   <Button onAction="#handleCancel" mnemonicParsing="false" text="Отмена" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
