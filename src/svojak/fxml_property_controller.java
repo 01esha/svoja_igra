@@ -29,24 +29,29 @@ public class fxml_property_controller {
     private TextField tfTheme5;
     @FXML 
     private Button btnOK;
-    
+       
     
     @FXML
     private void initialize() {
-
+    tfTheme1.setText(ClassProperty.getInstance().ThemeNameGet(1));    
+    tfTheme2.setText(ClassProperty.getInstance().ThemeNameGet(2));
+    tfTheme3.setText(ClassProperty.getInstance().ThemeNameGet(3));
+    tfTheme4.setText(ClassProperty.getInstance().ThemeNameGet(4));
+    tfTheme5.setText(ClassProperty.getInstance().ThemeNameGet(5));
     }   
     
     @FXML
     protected void handleOk() {
-        //dialogStage.close();
-    ClassProperty.getInstance().ThemeNameSet(tfTheme1.getText());
-    Stage stage = (Stage) btnOK.getScene().getWindow();    
+    
+    ClassProperty.getInstance().ThemeNameSet(tfTheme1.getText(), 1);
+    Stage stage = (Stage) btnOK.getScene().getWindow(); 
     stage.close();
     }
     
     @FXML
     private void handleCancel() {
-       
+    Stage stage = (Stage) btnOK.getScene().getWindow(); 
+        stage.close();
     }
     
     

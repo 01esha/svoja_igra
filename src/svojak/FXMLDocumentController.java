@@ -169,7 +169,7 @@ public class FXMLDocumentController implements Initializable {
             secondStage.setScene(scene);            
             //secondStage.show();
             secondStage.showAndWait();
-            lblTheme1.setText(ClassProperty.getInstance().ThemeNameGet()); 
+            lblTheme1.setText(ClassProperty.getInstance().ThemeNameGet(1)); 
             } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }            
