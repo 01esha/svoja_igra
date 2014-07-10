@@ -78,7 +78,7 @@
             <HBox GridPane.columnSpan="2" GridPane.rowIndex="8">
                <children>
                   <Label text="Номер тура(увеличивает стоимость вопроса):" />
-                  <ComboBox prefWidth="40.0">
+                  <ComboBox fx:id="cboxTourNum" prefWidth="40.0">
                       <items>
                           <FXCollections fx:factory="observableArrayList">
                               <String fx:value="1" />

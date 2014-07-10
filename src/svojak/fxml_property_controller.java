@@ -5,11 +5,9 @@
  */
 package svojak;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 /**
@@ -29,7 +27,8 @@ public class fxml_property_controller {
     private TextField tfTheme5;
     @FXML 
     private Button btnOK;
-       
+    @FXML 
+    private ComboBox cboxTourNum;   
     
     @FXML
     private void initialize() {
@@ -42,8 +41,12 @@ public class fxml_property_controller {
     
     @FXML
     protected void handleOk() {
-    
     ClassProperty.getInstance().ThemeNameSet(tfTheme1.getText(), 1);
+    ClassProperty.getInstance().ThemeNameSet(tfTheme2.getText(), 2);
+    ClassProperty.getInstance().ThemeNameSet(tfTheme3.getText(), 3);
+    ClassProperty.getInstance().ThemeNameSet(tfTheme4.getText(), 4);
+    ClassProperty.getInstance().ThemeNameSet(tfTheme5.getText(), 5);
+    ClassProperty.getInstance().TourNumSet(Short.parseShort(cboxTourNum.getValue().toString()));
     Stage stage = (Stage) btnOK.getScene().getWindow(); 
     stage.close();
     }

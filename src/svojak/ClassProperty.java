@@ -12,6 +12,8 @@ public class ClassProperty {
     private String Theme3Name = "тема 3";
     private String Theme4Name = "тема 4";
     private String Theme5Name = "тема 5";
+    private short numberTour = 1;
+    
 
     public String ThemeNameGet(int i) {        
         switch (i){
@@ -43,10 +45,15 @@ public class ClassProperty {
                 Theme4Name = Theme;
                 break;
            case 5 :
-                Theme1Name = Theme;
+                Theme5Name = Theme;
                 break;
         }
-        
     }
     
+    public short TourNumGet(){
+        return numberTour;
+    }
+    public void TourNumSet(short Num){
+        numberTour = Num;
+    }
 }
