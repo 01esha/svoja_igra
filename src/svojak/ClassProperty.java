@@ -13,7 +13,7 @@ public class ClassProperty {
     private String Theme4Name = "тема 4";
     private String Theme5Name = "тема 5";
     private short numberTour = 1;
-    
+    private int [][] arr_bonus;
 
     public String ThemeNameGet(int i) {        
         switch (i){
@@ -55,5 +55,9 @@ public class ClassProperty {
     }
     public void TourNumSet(short Num){
         numberTour = Num;
+    }
+    
+    public void arrBonusSet(int MaxTheme){
+        arr_bonus = new int [MaxTheme][5];
     }
 }

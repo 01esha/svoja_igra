@@ -89,16 +89,19 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(root);
             Stage secondStage = new Stage(StageStyle.UTILITY);
             secondStage.setTitle("Своя Игра");
-            secondStage.setScene(scene);            
-            //secondStage.show();
+            secondStage.setScene(scene);                        
             secondStage.showAndWait();
+            
+            gridpaneMain.getChildren().remove(6, 31);
             
             lblTheme1.setText(ClassProperty.getInstance().ThemeNameGet(1)); 
             lblTheme2.setText(ClassProperty.getInstance().ThemeNameGet(2)); 
             lblTheme3.setText(ClassProperty.getInstance().ThemeNameGet(3)); 
             lblTheme4.setText(ClassProperty.getInstance().ThemeNameGet(4)); 
             lblTheme5.setText(ClassProperty.getInstance().ThemeNameGet(5));
+            
             addgridlbl();
+            
             } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }            
