@@ -13,8 +13,11 @@ public class ClassProperty {
     private String Theme4Name = "тема 4";
     private String Theme5Name = "тема 5";
     private short numberTour = 1;
-    private int [][] arr_bonus;
-
+    private boolean bAucBonus = false;
+    private boolean bBlCatBonus = false;
+    private boolean bSponsorBonus = false;
+    private boolean bCancel = false;
+    
     public String ThemeNameGet(int i) {        
         switch (i){
             case 1 :                
@@ -56,8 +59,29 @@ public class ClassProperty {
     public void TourNumSet(short Num){
         numberTour = Num;
     }
+    public boolean bonusAucGet(){
+       return bAucBonus;
+    }
+    public void bonusAucSet(boolean Auc){
+    bAucBonus = Auc;
+    }
+    public boolean bonusBlCatGet(){
+       return bBlCatBonus;
+    }
+    public void bonusBlCatSet(boolean Cat){
+    bBlCatBonus = Cat;
+    }
+    public boolean bonusSponsorGet(){
+       return bSponsorBonus;
+    }
+    public void bonusSponsorSet(boolean Spon){
+    bSponsorBonus = Spon;
+    }
     
-    public void arrBonusSet(int MaxTheme){
-        arr_bonus = new int [MaxTheme][5];
+    public boolean cancelGet(){
+        return bCancel;
+    }
+    public void cancelSet(boolean B){
+        bCancel= B;
     }
 }

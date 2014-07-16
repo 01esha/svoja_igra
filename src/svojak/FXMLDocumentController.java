@@ -7,6 +7,10 @@ package svojak;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +48,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML 
     private Label lblTheme5;
     
-    
+    List<Integer> bonusList = new ArrayList<Integer>();
    
     
     
@@ -56,7 +60,9 @@ public class FXMLDocumentController implements Initializable {
     
     private void addgridlbl(){
     short tournum = ClassProperty.getInstance().TourNumGet();
-        for ( int i = 0; i < 5; i++) {
+    int maxTheme = countTheme();
+    arrBonus(maxTheme);
+        for ( int i = 0; i < maxTheme; i++) {
             for ( int j = 0; j < 5; j++) {
                 AnchorPane anchorpane = new AnchorPane();                
                 Label lblcell = new Label(String.valueOf((j+1)*10*tournum));                
@@ -69,46 +75,120 @@ public class FXMLDocumentController implements Initializable {
                 lblcell.setAlignment(Pos.CENTER);                
                 lblcell.setOnMouseClicked(new EventHandler<MouseEvent>(){ 
                   @Override
-                  public void handle(MouseEvent arg0) {
-                      if (arg0.getButton()== MouseButton.PRIMARY){
-                      Label l= (Label)arg0.getSource();
-                      l.setText(null);
-                      }
-                      if (arg0.getButton()== MouseButton.SECONDARY){
-                      propertyform();                          
-                      }
+                    public void handle(MouseEvent arg0) {
+                        if (arg0.getButton() == MouseButton.PRIMARY) {
+                            Label lbl = (Label) arg0.getSource();
+                            if (bonusList.get(0) == 0) {
+                                lbl.setText(null);
+                            }
+                            else {
+                               switch (bonusList.get(0)){
+                                   case 1 :
+                                    lbl.setText("1");
+                                    break;
+                                   case 2 :
+                                    lbl.setText("2");
+                                    break;
+                                   case 3 :
+                                    lbl.setText("3");
+                                    break;
+                               }
+                            }
+                            bonusList.remove(0);
+                        }
+                        if (arg0.getButton() == MouseButton.SECONDARY) {
+                            propertyform();
+                        }
                 }});
             }
         } 
-    
+    if (maxTheme<5){
+     for ( int i = maxTheme; i < 5; i++) {
+            for ( int j = 0; j < 5; j++) {
+                AnchorPane anchorpane = new AnchorPane();                
+                Label lblcell = new Label("-");                
+                anchorpane.getChildren().add(lblcell);                
+                AnchorPane.setBottomAnchor(lblcell, 0.0);
+                AnchorPane.setRightAnchor(lblcell, 0.0);
+                AnchorPane.setTopAnchor(lblcell, 0.0);
+                AnchorPane.setLeftAnchor(lblcell, 0.0);                
+                gridpaneMain.add(anchorpane, j+1, i);
+                lblcell.setAlignment(Pos.CENTER);                
+            }
+        } 
+    }
+    }
+    private int countTheme(){
+    int i = 0;
+        if (lblTheme1.getText().length()==0) {
+            return i = 0;           
+        } else if (lblTheme2.getText().length()==0) {
+            return i = 1;
+        } else if (lblTheme3.getText().length()==0) {
+            return i = 2;
+        } else if (lblTheme4.getText().length()==0) {
+            return i = 3;
+        } else if (lblTheme5.getText().length()==0) {
+            return i = 4;
+        } else {
+            return i = 5;
+        }     
     }
     
-    private void propertyform(){
+    
+    private void propertyform() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("FXML_property.fxml"));
             Scene scene = new Scene(root);
             Stage secondStage = new Stage(StageStyle.UTILITY);
             secondStage.setTitle("Своя Игра");
-            secondStage.setScene(scene);                        
+            secondStage.setScene(scene);
             secondStage.showAndWait();
-            
-            gridpaneMain.getChildren().remove(6, 31);
-            
-            lblTheme1.setText(ClassProperty.getInstance().ThemeNameGet(1)); 
-            lblTheme2.setText(ClassProperty.getInstance().ThemeNameGet(2)); 
-            lblTheme3.setText(ClassProperty.getInstance().ThemeNameGet(3)); 
-            lblTheme4.setText(ClassProperty.getInstance().ThemeNameGet(4)); 
-            lblTheme5.setText(ClassProperty.getInstance().ThemeNameGet(5));
-            
-            addgridlbl();
-            
-            } catch (IOException ex) {
+            if (!(ClassProperty.getInstance().cancelGet())) {
+                gridpaneMain.getChildren().remove(6, 31);
+
+                lblTheme1.setText(ClassProperty.getInstance().ThemeNameGet(1));
+                lblTheme2.setText(ClassProperty.getInstance().ThemeNameGet(2));
+                lblTheme3.setText(ClassProperty.getInstance().ThemeNameGet(3));
+                lblTheme4.setText(ClassProperty.getInstance().ThemeNameGet(4));
+                lblTheme5.setText(ClassProperty.getInstance().ThemeNameGet(5));
+
+                addgridlbl();
+            }
+        } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-            }            
+        }
     }
 
-    
-  
+    private void arrBonus(int max){
+        int iMaxElem = max*5;
+        for (int i=0; i<iMaxElem; i++){
+         bonusList.add(0);         
+        }
+        if (ClassProperty.getInstance().bonusAucGet()){
+            int randomInt = randomNumber(iMaxElem);
+            while(bonusList.get(randomInt)!=0)
+                randomInt = randomNumber(iMaxElem);
+            bonusList.set(randomInt, 1);            
+        }
+        if (ClassProperty.getInstance().bonusBlCatGet()){
+            int randomInt = randomNumber(iMaxElem);
+            while(bonusList.get(randomInt)!=0)
+                randomInt = randomNumber(iMaxElem);
+            bonusList.set(randomInt, 2);            
+        }
+        if (ClassProperty.getInstance().bonusSponsorGet()){
+            int randomInt = randomNumber(iMaxElem);
+            while(bonusList.get(randomInt)!=0)
+                randomInt = randomNumber(iMaxElem);
+            bonusList.set(randomInt, 3);            
+        }
+    }
+    private int randomNumber(int max){
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(max+1); 
+        return randomInt;
+    }
     
 }
 

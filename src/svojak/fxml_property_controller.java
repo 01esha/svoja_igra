@@ -7,6 +7,7 @@ package svojak;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,6 +30,14 @@ public class fxml_property_controller {
     private Button btnOK;
     @FXML 
     private ComboBox cboxTourNum;   
+    @FXML 
+    private CheckBox cbAuc;
+    @FXML 
+    private CheckBox cbBlCat;
+    @FXML 
+    private CheckBox cbSponsor;
+    
+    
     
     @FXML
     private void initialize() {
@@ -47,6 +56,19 @@ public class fxml_property_controller {
     ClassProperty.getInstance().ThemeNameSet(tfTheme4.getText(), 4);
     ClassProperty.getInstance().ThemeNameSet(tfTheme5.getText(), 5);
     ClassProperty.getInstance().TourNumSet(Short.parseShort(cboxTourNum.getValue().toString()));
+    if (cbAuc.isSelected()) 
+        ClassProperty.getInstance().bonusAucSet(true);
+    else 
+        ClassProperty.getInstance().bonusAucSet(false);
+    if (cbBlCat.isSelected())
+        ClassProperty.getInstance().bonusBlCatSet(true);
+    else 
+        ClassProperty.getInstance().bonusBlCatSet(false);
+    if (cbSponsor.isSelected())
+        ClassProperty.getInstance().bonusSponsorSet(true);
+    else 
+        ClassProperty.getInstance().bonusSponsorSet(false);
+    ClassProperty.getInstance().cancelSet(false);
     Stage stage = (Stage) btnOK.getScene().getWindow(); 
     stage.close();
     }
@@ -55,6 +77,7 @@ public class fxml_property_controller {
     private void handleCancel() {
     Stage stage = (Stage) btnOK.getScene().getWindow(); 
         stage.close();
+    ClassProperty.getInstance().cancelSet(true);
     }
     
     
