@@ -93,10 +93,18 @@ public class FXMLDocumentController implements Initializable {
                                        lbl.setGraphic(img);
                                        break;
                                    case 2 :
-                                    lbl.setText("2");
+                                       Image image1 = new Image(getClass().getResourceAsStream("cat.png"));
+                                       ImageView img1 = new ImageView(image1);
+                                       img1.fitHeightProperty().bind(lbl.heightProperty());
+                                       img1.fitWidthProperty().bind(lbl.heightProperty());
+                                       lbl.setGraphic(img1);
                                     break;
                                    case 3 :
-                                    lbl.setText("3");
+                                       Image image2 = new Image(getClass().getResourceAsStream("gift.png"));
+                                       ImageView img2 = new ImageView(image2);
+                                       img2.fitHeightProperty().bind(lbl.heightProperty());
+                                       img2.fitWidthProperty().bind(lbl.heightProperty());
+                                       lbl.setGraphic(img2);
                                     break;
                                }
                                lbl.setText(null);
