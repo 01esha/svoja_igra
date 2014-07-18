@@ -1,7 +1,7 @@
 .gridpane{          
      -fx-background-color: linear-gradient(from 45% 45% to 100% 100%, #1C68FF, #0C0966);
 }
-.label{    
+.label{        
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
