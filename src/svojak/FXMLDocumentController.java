@@ -22,6 +22,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -83,9 +85,13 @@ public class FXMLDocumentController implements Initializable {
                             }
                             else {
                                switch (bonusList.get(0)){
-                                   case 1 :
-                                    lbl.setText("1");
-                                    break;
+                                   case 1:
+                                       Image image = new Image(getClass().getResourceAsStream("auc.png"));
+                                       ImageView img = new ImageView(image);
+                                       img.fitHeightProperty().bind(lbl.heightProperty());
+                                       img.fitWidthProperty().bind(lbl.heightProperty());
+                                       lbl.setGraphic(img);
+                                       break;
                                    case 2 :
                                     lbl.setText("2");
                                     break;
@@ -93,8 +99,9 @@ public class FXMLDocumentController implements Initializable {
                                     lbl.setText("3");
                                     break;
                                }
+                               lbl.setText(null);
                             }
-                            bonusList.remove(0);
+                            bonusList.remove(0);                            
                         }
                         if (arg0.getButton() == MouseButton.SECONDARY) {
                             propertyform();
@@ -186,7 +193,7 @@ public class FXMLDocumentController implements Initializable {
     }
     private int randomNumber(int max){
         Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(max+1); 
+        int randomInt = randomGenerator.nextInt(max); 
         return randomInt;
     }
     
